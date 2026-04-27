@@ -1,0 +1,109 @@
+{
+  "carriers": {
+    "canonical_names": {
+      "DHL": [
+        "DHL",
+        "DHL Express",
+        "DHL - Paris",
+        "DHL Freight",
+        "DHL Global"
+      ],
+      "FedEx": [
+        "FedEx",
+        "Federal Express",
+        "FedEx Ground",
+        "FedEx International"
+      ],
+      "UPS": [
+        "UPS",
+        "United Parcel Service",
+        "UPS Express",
+        "UPS Freight"
+      ],
+      "Chronopost": [
+        "Chronopost",
+        "Chrono",
+        "Chronopost FR",
+        "Chronopost Express"
+      ],
+      "GLS": [
+        "GLS",
+        "GLS France",
+        "General Logistics Systems",
+        "GLS Group"
+      ],
+      "DB Schenker": [
+        "DB Schenker",
+        "Schenker",
+        "DB Schenker Logistics"
+      ],
+      "Kuehne+Nagel": [
+        "Kuehne+Nagel",
+        "KN",
+        "Kuehne Nagel",
+        "K+N Logistics"
+      ],
+      "XPO Logistics": [
+        "XPO",
+        "XPO Logistics",
+        "XPO France"
+      ]
+    },
+    "fuzzy_threshold": 80
+  },
+  "warehouses": {
+    "canonical_names": {
+      "Paris-CDG Hub": [
+        "CDG Hub",
+        "Paris CDG",
+        "Roissy Warehouse",
+        "Paris-CDG Hub"
+      ],
+      "Lyon Distribution Center": [
+        "Lyon DC",
+        "Lyon Distribution",
+        "Lyon Centre"
+      ],
+      "Marseille Port Depot": [
+        "Marseille Depot",
+        "Marseille Port",
+        "MRS Depot"
+      ],
+      "Bordeaux Logistics Park": [
+        "Bordeaux LP",
+        "Bordeaux Park",
+        "BDX Logistics"
+      ]
+    },
+    "fuzzy_threshold": 75
+  },
+  "pii_columns": [
+    "customer_name",
+    "phone",
+    "email",
+    "address_detail"
+  ],
+  "co2_emission_factors": {
+    "petit_camion": 0.120,
+    "gros_camion": 0.210,
+    "fourgonnette": 0.080,
+    "train": 0.028,
+    "avion": 0.950,
+    "unit": "kg_CO2_per_km_per_ton"
+  },
+  "data_quality": {
+    "max_error_rate_pct": 20,
+    "required_columns": [
+      "tracking_id",
+      "order_date",
+      "delivery_date",
+      "carrier",
+      "origin_warehouse",
+      "destination_city",
+      "weight_kg",
+      "distance_km",
+      "status",
+      "vehicle_type"
+    ]
+  }
+}
