@@ -198,6 +198,25 @@ with st.sidebar:
     st.markdown("🔒 **Sécurité :** RGPD Anonymisé")
     st.markdown("🌿 **Carbone :** Normes UE 2024")
 
+    st.divider()
+    from pipeline import run_pipeline
+    
+    # --- New Phase 13.1: Config Email Alert ---
+    with st.sidebar.expander("📧 Configuration Alertes Email"):
+        st.write("Configura các tham số SMTP để nhận báo cáo chủ động.")
+        smtp_user = st.text_input("User Email", value="", help="Email used to send alerts")
+        smtp_pass = st.text_input("App Password", type="password", help="Gmail App Password")
+        st.info("💡 **Gmail**: Bật 2FA > App Passwords. Tạo mã 16 ký tự.")
+
+    gen_data = st.sidebar.checkbox("Générer de nouvelles données au lancement", value=False)
+    
+    if st.sidebar.button("🚀 Lancer le Pipeline Complet", use_container_width=True):
+        with st.spinner("Pipeline en cours d'exécution..."):
+            status = run_pipeline(generate_data=gen_data, smtp_user=smtp_user, smtp_pass=smtp_pass)
+            st.success("✅ Pipeline terminé !")
+            st.toast("Rapport d'alerte généré !")
+            st.rerun()
+
 # =====================================================================
 # HEADER
 # =====================================================================

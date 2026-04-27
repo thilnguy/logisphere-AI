@@ -33,7 +33,7 @@ RAW_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 STATUS_FILE = os.path.join(PROJECT_ROOT, "data", "reports", "pipeline_status.json")
 
 
-def run_pipeline(input_file: str = None, generate_data: bool = False) -> dict:
+def run_pipeline(input_file: str = None, generate_data: bool = False, smtp_user: str = None, smtp_pass: str = None) -> dict:
     """
     Execute the full logistics automation pipeline.
     Returns a status dict for the Dashboard Status Page.
@@ -163,7 +163,7 @@ def run_pipeline(input_file: str = None, generate_data: bool = False) -> dict:
             from utils.notifier import send_risk_alert
             # Format summarized recommendations for the email
             recs = status["stages"].get("optimization", {}).get("raw_recs", "Consultez le dashboard pour les détails.")
-            send_risk_alert(high_risk_count, recs)
+            send_risk_alert(high_risk_count, recs, user=smtp_user, password=smtp_pass)
             status["stages"]["notification"] = {"status": "SENT", "count": high_risk_count}
         except Exception as e:
             status["stages"]["notification"] = {"status": "ERROR", "error": str(e)}
