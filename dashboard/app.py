@@ -173,6 +173,32 @@ def load_data():
 kpi, df, pipeline_status, validation, opt_plan = load_data()
 
 # =====================================================================
+# SIDEBAR - AIDE & GUIDE KPI
+# =====================================================================
+with st.sidebar:
+    st.markdown("### 💡 Aide & Guide KPI")
+    
+    with st.expander("📖 Guide d'Utilisation", expanded=False):
+        st.markdown("""
+        1. **Pipeline** : Vérifiez que tous les agents sont verts (PASS/OK).
+        2. **KPIs** : Suivez l'OTIF (performance) et les CO2 (écologie).
+        3. **Optimisation** : Appliquez les conseils de l'IA situés en bas.
+        4. **Prévisions** : Anticipez les flux sur les 6 prochains mois.
+        """)
+
+    with st.expander("🔍 Légende des Risques", expanded=True):
+        st.markdown("""
+        *   🟢 **AUCUN** : Livraison à l'heure.
+        *   🔵 **FAIBLE** : Livraison effectuée mais en retard.
+        *   🟠 **MOYEN** : En cours de route (dans les délais).
+        *   🔴 **ÉLEVÉ** : Retard critique ou blocage.
+        """)
+    
+    st.divider()
+    st.markdown("🔒 **Sécurité :** RGPD Anonymisé")
+    st.markdown("🌿 **Carbone :** Normes UE 2024")
+
+# =====================================================================
 # HEADER
 # =====================================================================
 st.markdown("""
@@ -483,6 +509,82 @@ if not df.empty:
     else:
         st.info("La carte nécessite les colonnes 'lat' et 'lon' dans les données d'analyse.")
 
+    st.divider()
+
+    # =====================================================================
+    # FORECASTING (PROPHET)
+    # =====================================================================
+    st.markdown('<div class="section-header">📈 Prévisions de Volume (Tactique - 6 mois)</div>', unsafe_allow_html=True)
+    forecast_path = os.path.join(PROJECT_ROOT, "data", "analytics", "Forecast_Prophet.csv")
+    
+    if os.path.exists(forecast_path):
+        forecast_df = pd.read_csv(forecast_path)
+        forecast_df["ds"] = pd.to_datetime(forecast_df["ds"])
+
+        # Filter: Show 30 days of history + the full forecast
+        today_dt = pd.Timestamp.now().normalize()
+        history_limit = today_dt - pd.Timedelta(days=30)
+        display_df = forecast_df[forecast_df["ds"] >= history_limit].copy()
+
+        import plotly.graph_objects as go
+        fig = go.Figure()
+
+        # Lower bound
+        fig.add_trace(go.Scatter(
+            x=display_df['ds'], y=display_df['yhat_lower'],
+            mode='lines',
+            line=dict(width=0),
+            showlegend=False
+        ))
+
+        # Upper bound
+        fig.add_trace(go.Scatter(
+            x=display_df['ds'], y=display_df['yhat_upper'],
+            mode='lines',
+            line=dict(width=0),
+            fill='tonexty',
+            fillcolor='rgba(59, 130, 246, 0.2)',
+            showlegend=True,
+            name='Intervalle (95%)'
+        ))
+
+        # Main Prediction
+        fig.add_trace(go.Scatter(
+            x=display_df['ds'], y=display_df['yhat'],
+            mode='lines',
+            line=dict(color='#3b82f6', width=3),
+            name='Prévision',
+            hovertemplate="<b>Date</b>: %{x}<br><b>Volume</b>: %{y:.0f} colis<extra></extra>"
+        ))
+
+        fig.update_layout(
+            plot_bgcolor="rgba(0,0,0,0)",
+            paper_bgcolor="rgba(0,0,0,0)",
+            font_color="#94a3b8",
+            height=500,
+            margin=dict(l=60, r=40, t=40, b=80),
+            hovermode="x unified",
+            hoverlabel=dict(
+                bgcolor="#1e293b",
+                font_size=12,
+                font_family="Inter",
+                namelength=-1  # FORCE FULL NAME DISPLAY
+            ),
+            xaxis=dict(title="Timeline de Livraison (12 mois)", showgrid=False, automargin=True),
+            yaxis=dict(title="Volume (Nombre de colis)", showgrid=True, gridcolor="#1e293b", automargin=True),
+            legend=dict(
+                orientation="v", 
+                yanchor="top", 
+                y=0.98, 
+                xanchor="left", 
+                x=0.02,
+                bgcolor="rgba(15, 23, 42, 0.5)"
+            )
+        )
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info("Module de prévision inactif. Exécutez le pipeline avec Facebook Prophet configuré.")
+
 else:
     st.warning("⚠️ Aucune donnée d'analyse trouvée. Exécutez `python pipeline.py --generate` en premier.")
 
@@ -492,7 +594,7 @@ else:
 st.markdown("""
 <div style="text-align:center; padding: 30px 0 10px 0; border-top: 1px solid #1e293b;">
     <p style="color:#475569; font-size:12px;">
-        Supply Chain Automation Agents · Built with Antigravity 🧠 · GDPR & EU Carbon Compliant
+        Agents d'Automatisation Supply Chain · Développé par Thi Lan Anh NGUYEN · Conforme RGPD & Bilan Carbone UE
     </p>
 </div>
 """, unsafe_allow_html=True)

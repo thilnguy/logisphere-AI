@@ -9,7 +9,7 @@ import numpy as np
 import os
 from datetime import datetime, timedelta
 
-ROWS = 500
+ROWS = 2500
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "raw")
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "Logistics_Raw_July.xlsx")
 
@@ -123,8 +123,9 @@ def generate() -> str:
     np.random.seed(42)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    start = datetime(2025, 7, 1)
-    end = datetime(2025, 7, 31)
+    # Expand history to 2 years for Year-over-Year seasonality
+    end = datetime.now()
+    start = end - timedelta(days=730)
 
     records = []
     for i in range(ROWS):

@@ -75,4 +75,4 @@ supply-chain-automation-agents/
 - **Prêt pour l'Audit (Audit-Ready)**: Traçabilité intégrale, chaque étape générant ses logs de métadonnées de succès ou d'erreurs logiques.
 
 ---
-*Développé pour les opérations logistiques premium et les environnements de traçabilité 4.0.*
+*Développé par **Thi Lan Anh NGUYEN** pour les opérations logistiques premium et les environnements de traçabilité 4.0.*

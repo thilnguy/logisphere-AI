@@ -1,8 +1,8 @@
 {
   "status": "PASS",
-  "timestamp": "2026-04-27T11:21:45.834576",
+  "timestamp": "2026-04-27T12:13:03.442743",
   "input_file": "/Users/lananh/Workspace/code/MyAGWorkspace/supply-chain-automation-agents/data/raw/Logistics_Raw_July.xlsx",
-  "total_rows": 525,
+  "total_rows": 2625,
   "error_rows": 0,
   "error_rate_pct": 0.0,
   "threshold_pct": 20,
@@ -10,8 +10,8 @@
     {
       "type": "BLANK_CARRIER",
       "severity": "LOW",
-      "bad_count": 58,
-      "detail": "58 rows have blank carrier (will be filled by Cleaner Agent)"
+      "bad_count": 300,
+      "detail": "300 rows have blank carrier (will be filled by Cleaner Agent)"
     }
   ]
 }

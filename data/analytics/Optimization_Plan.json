@@ -1,17 +1,31 @@
 {
-  "summary": "AI Priority Optimization Plan",
-  "timestamp": "2026-04-27T11:21:45.885867+00:00",
+  "summary": "Plan d'Action IA - Optimisation Multi-dimensionnelle",
+  "timestamp": "2026-04-27T12:13:03.654627+00:00",
   "global_kpis": {
-    "current_otif": 39.43,
+    "current_otif": 38.76,
     "target_otif": 90.0
   },
   "recommendations": [
     {
-      "urgency": "CRITIQUE",
-      "issue": "Faible OTIF global (39.43%)",
-      "finding": "Le transporteur 'XPO Logistics' ralentit la performance avec seulement 22.73% d'OTIF.",
-      "action": "Transférer 25% du volume de XPO Logistics vers GLS sur les routes critiques.",
-      "impact": "Amélioration estimée de +5.2% de l'OTIF"
+      "urgency": "HAUTE",
+      "issue": "Nœud critique: Lyon Distribution Center ➔ Grenoble",
+      "finding": "Taux d'anomalie de 71.43% sur cet axe (5 retours/retards).",
+      "action": "Pré-positionner du stock au Hub de Grenoble ou augmenter la fréquence des départs de Lyon Distribution Center.",
+      "impact": "Réduction ciblée des délais de 24-48h"
+    },
+    {
+      "urgency": "HAUTE",
+      "issue": "Nœud critique: Paris-CDG Hub ➔ Montpellier",
+      "finding": "Taux d'anomalie de 71.43% sur cet axe (5 retours/retards).",
+      "action": "Pré-positionner du stock au Hub de Montpellier ou augmenter la fréquence des départs de Paris-CDG Hub.",
+      "impact": "Réduction ciblée des délais de 24-48h"
+    },
+    {
+      "urgency": "LOGISTIQUE",
+      "issue": "Déficit de performance chez FedEx",
+      "finding": "OTIF de seulement 35.29% vs DB Schenker (45.19%).",
+      "action": "Réduire l'allocation de volume chez FedEx de 30% au profit de DB Schenker.",
+      "impact": "Amélioration immédiate de l'OTIF de ~4%"
     }
   ]
 }

@@ -9,3 +9,4 @@ thefuzz[speedup]>=0.22.0
 prophet>=1.1.5
 python-Levenshtein>=0.25.0
 hashlib-additional>=1.0.1
+prophet>=1.1.5

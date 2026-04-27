@@ -27,6 +27,7 @@ from agents.data_quality_agent import validate
 from agents.cleaner_agent import clean
 from agents.analyst_agent import analyze
 from agents.optimization_agent import prescribe
+from agents.forecast_agent import run_forecast
 
 RAW_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
 STATUS_FILE = os.path.join(PROJECT_ROOT, "data", "reports", "pipeline_status.json")
@@ -135,6 +136,16 @@ def run_pipeline(input_file: str = None, generate_data: bool = False) -> dict:
             print(f"      - Likely Impact: {rec['impact']}")
     except Exception as e:
         status["stages"]["optimization"] = {"status": "ERROR", "error": str(e)}
+
+    # --- Stage 5: Time-Series Forecasting ---
+    print("\n" + "=" * 60)
+    print("📈 STAGE 5: Demand Forecasting (Prophet)")
+    print("=" * 60)
+    try:
+        run_forecast()
+        status["stages"]["forecasting"] = {"status": "SUCCESS"}
+    except Exception as e:
+        status["stages"]["forecasting"] = {"status": "ERROR", "error": str(e)}
 
     # --- All stages passed ---
     status["overall"] = "SUCCESS"
