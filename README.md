@@ -1,79 +1,78 @@
-# Supply Chain Automation Agents 🚛
+# LogiSphere AI — Command Center & Automation Agents 🚛
 
-> **From Raw Excel to Executive Dashboard — Zero manual intervention.**
-> An agentic AI-driven pipeline that automates logistics data cleaning, KPI analytics, EU carbon tracking, and interactive dashboard generation.
+> **De l'Excel Brut au Dashboard Exécutif — Zéro intervention manuelle.**
+> Une architecture logicielle orientée *Agentic AI* automatisant le nettoyage des données logistiques, l'analyse des KPIs, le suivi de l'Empreinte Carbone Européenne et la génération de plans d'action prescriptifs. Entièrement localisé en français.
 
 ---
 
-## Architecture
+## Architecture Décisionnelle (Agentic AI)
 
 ```
-┌──────────────┐    ┌──────────────────┐    ┌────────────────┐    ┌──────────────────┐    ┌────────────────┐
-│  Data Source  │───▶│ Data Quality     │───▶│ Cleaner Agent  │───▶│ Analyst Agent    │───▶│ Dashboard      │
-│  (ERP / WMS) │    │ Agent (Gate 20%) │    │ (GDPR + Fuzzy) │    │ (OTIF + CO₂)    │    │ (Streamlit)    │
-└──────────────┘    └──────────────────┘    └────────────────┘    └──────────────────┘    └────────────────┘
-       │                    │                       │                      │                      │
-       │              Halts pipeline           Anonymizes PII        Computes KPIs          Status Page
-       │              if errors > 20%          Normalizes names      CO₂ Emissions          KPI Cards
-       ▼                                       Deduplicates          Risk Flags             Charts + Map
-   Logistics_Raw.xlsx                     Logistics_Cleaned.csv   Analytics_Summary.csv    Live Web App
+┌──────────────┐    ┌──────────────────┐    ┌────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│ Source Donnée │───▶│ Agent Qualité    │───▶│ Agent Cleaner  │───▶│ Agent Analyst    │───▶│ Dashboard (UI)  │
+│ (ERP / WMS)   │    │ (Seuil 20%)      │    │ (RGPD + Master)│    │ (OTIF + CO₂)    │    │ (Streamlit)     │
+└──────────────┘    └──────────────────┘    └────────────────┘    └──────────────────┘    └─────────────────┘
+                             │                       │                      │                      │
+                       Halte globale         Hachage PII (SHA256)   Calculs Environ.       Statut Pipeline
+                       Alerte d'anomalie     Mapping Flou (Fuzzy)   Niveaux de Risques     Cartes et KPIs
 ```
 
-## Features
+### 🧠 Nouvel "Optimization Agent" (Couche Prescriptive)
+Le système inclut un moteur d'Intelligence Décisionnelle qui lit les KPIs (Dashboard) et prescrit des plans d'actions stratégiques. Ex: *"Transférer 25% du volume de XPO Logistics vers GLS pour améliorer l'OTIF de 5.2%."*
 
-| Feature | Agent | Details |
+## Fonctionnalités Principales
+
+| Fonctionnalité | Agent Responsable | Détails |
 |---------|-------|---------|
-| **Data Validation** | Quality Agent | Halts pipeline if error rate > 20%, sends alerts |
-| **GDPR Anonymization** | Cleaner Agent | SHA-256 hashes PII (names, phones) per EU regulation |
-| **Fuzzy Matching** | Cleaner Agent | Normalizes carrier/warehouse variants via Source of Truth |
-| **OTIF Tracking** | Analyst Agent | On-Time In-Full rate per carrier with 5-day baseline |
-| **CO₂ Emissions** | Analyst Agent | EU-standard carbon footprint per shipment |
-| **Risk Flagging** | Analyst Agent | HIGH/MEDIUM/LOW risk on delayed shipments |
-| **Pipeline Status** | Dashboard | Real-time stage health indicator (trust layer) |
-| **Delivery Heatmap** | Dashboard | Folium dark-mode map of shipment distribution |
+| **Validation des Données** | Quality Agent | Halte du pipeline si le taux d'erreur > 20%, protection Data Lake |
+| **Anonymisation RGPD** | Cleaner Agent | Hachage SHA-256 des infos personnelles (Noms, Téléphones) |
+| **Réconciliation de Données** | Cleaner Agent | Normalisation NLP (Fuzzy) des transporteurs selon la configuration Master |
+| **Suivi OTIF** | Analyst Agent | Performance de ponctualité par transporteur (Base = 5 jours) |
+| **Émissions de CO₂** | Analyst Agent | Facteurs d'émissions standardisés Europe selon véhicule (kg CO₂ / T.km) |
+| **Flags de Risques** | Analyst Agent | Catégorisation automatiques des expéditions: AUCUN, FAIBLE, MOYEN, ÉLEVÉ |
+| **Action Plan IA** | Optimization Agent | Génération de recommandations stratégiques de haut-niveau |
+| **Dashboard Exécutif** | Streamlit UI | Web App interactive avec Drill-Down des risques, graphiques Plotly et Heatmap |
 
-## Quick Start
+## Démarrage Rapide
 
 ```bash
-# 1. Install dependencies
+# 1. Installation des dépendances
 pip install -r requirements.txt
 
-# 2. Generate mock data & run full pipeline
+# 2. Génération de données fictives & exécution complète du Pipeline Agentique
 python pipeline.py --generate
 
-# 3. Launch Dashboard
+# 3. Lancer le Dashboard interactif
 streamlit run dashboard/app.py
 ```
 
-## Project Structure
+## Structure du Projet
 
 ```
 supply-chain-automation-agents/
 ├── agents/
-│   ├── data_quality_agent.py    # Validation & exception gating
-│   ├── cleaner_agent.py         # GDPR, fuzzy matching, normalization
-│   └── analyst_agent.py         # OTIF, lead time, CO₂, risk
+│   ├── data_quality_agent.py    # Contrôle aux frontières & exception
+│   ├── cleaner_agent.py         # RGPD, Fuzzy Matching TheFuzz
+│   ├── analyst_agent.py         # KPIs métiers (OTIF, CO2, Risques)
+│   └── optimization_agent.py    # IA Prescriptive (Intelligence Opérationnelle)
 ├── config/
-│   └── master_data.json         # Source of Truth (carriers, warehouses, CO₂ factors)
+│   └── master_data.json         # Source of Truth (Véhicules, CO2, Transporteurs)
 ├── dashboard/
-│   └── app.py                   # Streamlit Command Center
+│   └── app.py                   # Centre de Commande Streamlit
 ├── data/
-│   ├── raw/                     # Input files
-│   ├── cleaned/                 # Cleaner output
-│   ├── analytics/               # Analyst output
-│   ├── reports/                 # Validation & pipeline status
-│   └── generate_mock_data.py    # Mock data generator
-├── pipeline.py                  # Orchestrator
-├── requirements.txt
-└── README.md
+│   ├── raw/                     # Données entrantes (.xlsx / .csv)
+│   ├── cleaned/                 # Sorties de l'Agent Cleaner
+│   ├── analytics/               # Fichiers analytiques & Plan IA JSON
+│   ├── reports/                 # JSON de validation pipeline
+│   └── generate_mock_data.py    # Générateur de 500+ lignes synthétiques
+├── pipeline.py                  # Chef d'orchestre des agents
 ```
 
-## EU Compliance
+## Conformité Industrielle (EU)
 
-- **GDPR**: All PII columns are SHA-256 hashed before entering the analytics pipeline
-- **Carbon Tracking**: CO₂ emissions calculated using EU reference factors per vehicle type
-- **Auditability**: Every pipeline run produces timestamped validation and status reports
+- **RGPD Act**: Tous les champs PII sont irréversiblement masqués avant analyse.
+- **Reporting Environnemental**: Mesure exacte de la logistique verte par types de véhicules européens (`petit_camion`, `fourgonnette`, `gros_camion`, etc).
+- **Prêt pour l'Audit (Audit-Ready)**: Traçabilité intégrale, chaque étape générant ses logs de métadonnées de succès ou d'erreurs logiques.
 
 ---
-
-*Built with Antigravity 🧠 — Agentic AI for Supply Chain Excellence*
+*Développé pour les opérations logistiques premium et les environnements de traçabilité 4.0.*
