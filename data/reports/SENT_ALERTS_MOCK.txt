@@ -1,0 +1,20 @@
+
+--- NEW ALERT ---
+Subject: ⚠️ ALERTE LOGISTIQUE : 348 expéditions à HAUT RISQUE détectées
+
+    Bonjour,
+    
+    Le Pipeline LogiSphere AI a détecté 348 expéditions avec un niveau de risque ÉLEVÉ.
+    
+    🎯 RECOMMANDATIONS DE L'IA :
+    ---------------------------
+    - Pré-positionner du stock au Hub de Grenoble ou augmenter la fréquence des départs de Lyon Distribution Center. (Impact: Réduction ciblée des délais de 24-48h)
+- Pré-positionner du stock au Hub de Montpellier ou augmenter la fréquence des départs de Paris-CDG Hub. (Impact: Réduction ciblée des délais de 24-48h)
+- Réduire l'allocation de volume chez FedEx de 30% au profit de DB Schenker. (Impact: Amélioration immédiate de l'OTIF de ~4%)
+    
+    Veuillez consulter le Dashboard pour plus de détails : http://localhost:8501
+    
+    -- 
+    LogiSphere AI Notifier
+    
+-----------------

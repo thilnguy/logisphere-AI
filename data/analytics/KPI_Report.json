@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-27T12:13:03.654627+00:00",
+  "timestamp": "2026-04-27T12:54:02.704740+00:00",
   "total_shipments": 2496,
   "total_delivered": 1388,
   "global_otif_pct": 38.76,
@@ -146,5 +146,6 @@
     "Troyes": 1048.19,
     "Valence": 3337.66,
     "Vannes": 2714.07
-  }
+  },
+  "high_risk_count": 348
 }

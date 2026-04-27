@@ -116,6 +116,7 @@ def run_pipeline(input_file: str = None, generate_data: bool = False) -> dict:
             "global_otif_pct": kpi.get("global_otif_pct"),
             "total_co2_kg": kpi.get("total_co2_kg"),
             "total_revenue_eur": kpi.get("total_revenue_eur"),
+            "high_risk_count": kpi.get("high_risk_count", 0)
         }
     except Exception as e:
         status["stages"]["analytics"] = {"status": "ERROR", "error": str(e)}
@@ -129,7 +130,12 @@ def run_pipeline(input_file: str = None, generate_data: bool = False) -> dict:
     print("=" * 60)
     try:
         opt_plan = prescribe()
-        status["stages"]["optimization"] = {"status": "READY", "recommendations": len(opt_plan.get("recommendations", []))}
+        recs_list = opt_plan.get("recommendations", [])
+        status["stages"]["optimization"] = {
+            "status": "READY", 
+            "recommendations": len(recs_list),
+            "raw_recs": "\n".join([f"- {r['action']} (Impact: {r['impact']})" for r in recs_list])
+        }
         for rec in opt_plan.get("recommendations", []):
             print(f"   💡 Suggestion: {rec['action']}")
             print(f"      - Issue: {rec['issue']}")
@@ -146,6 +152,21 @@ def run_pipeline(input_file: str = None, generate_data: bool = False) -> dict:
         status["stages"]["forecasting"] = {"status": "SUCCESS"}
     except Exception as e:
         status["stages"]["forecasting"] = {"status": "ERROR", "error": str(e)}
+
+    # --- Stage 6: Proactive Notification (Phase 13) ---
+    high_risk_count = status["stages"].get("analytics", {}).get("high_risk_count", 0)
+    if high_risk_count > 0:
+        print("\n" + "=" * 60)
+        print("🔔 STAGE 6: Proactive Notification")
+        print("=" * 60)
+        try:
+            from utils.notifier import send_risk_alert
+            # Format summarized recommendations for the email
+            recs = status["stages"].get("optimization", {}).get("raw_recs", "Consultez le dashboard pour les détails.")
+            send_risk_alert(high_risk_count, recs)
+            status["stages"]["notification"] = {"status": "SENT", "count": high_risk_count}
+        except Exception as e:
+            status["stages"]["notification"] = {"status": "ERROR", "error": str(e)}
 
     # --- All stages passed ---
     status["overall"] = "SUCCESS"

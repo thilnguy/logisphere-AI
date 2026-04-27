@@ -113,6 +113,7 @@ def analyze(input_path: str) -> dict:
         "co2_by_carrier": co2_by_carrier.to_dict(),
         "co2_by_vehicle_type": co2_by_vehicle.to_dict(),
         "cost_by_city": cost_by_region.to_dict() if isinstance(cost_by_region, pd.Series) else {},
+        "high_risk_count": int(df["risk_level"].value_counts().get("ÉLEVÉ", 0))
     }
 
     # --- Save outputs ---
