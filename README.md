@@ -10,7 +10,7 @@
 ```mermaid
 graph LR
     A[Source Données<br/><i>ERP / WMS</i>] --> B(Agent Qualité)
-    B -- "Seuil 20%" --> C(Agent Cleaner)
+    B -- "Garde-fou 20% d'erreurs" --> C(Agent Cleaner)
     C -- "RGPD + Master" --> D(Agent Analyst)
     D -- "OTIF + CO2" --> E(Agent Optimisation)
     E -- "Prescriptions" --> F[Dashboard UI<br/><i>Streamlit</i>]
