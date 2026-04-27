@@ -1,0 +1,33 @@
+{
+  "pipeline_run": "2026-04-27T11:21:45.666174+00:00",
+  "stages": {
+    "data_generation": {
+      "status": "OK",
+      "file": "/Users/lananh/Workspace/code/MyAGWorkspace/supply-chain-automation-agents/data/raw/Logistics_Raw_July.xlsx"
+    },
+    "data_extraction": {
+      "status": "OK",
+      "file": "/Users/lananh/Workspace/code/MyAGWorkspace/supply-chain-automation-agents/data/raw/Logistics_Raw_July.xlsx"
+    },
+    "validation": {
+      "status": "PASS",
+      "error_rate_pct": 0.0,
+      "issues_count": 1
+    },
+    "cleaning": {
+      "status": "PASS",
+      "output": "/Users/lananh/Workspace/code/MyAGWorkspace/supply-chain-automation-agents/data/cleaned/Logistics_Cleaned.csv"
+    },
+    "analytics": {
+      "status": "SUCCESS",
+      "global_otif_pct": 39.43,
+      "total_co2_kg": 54048.14,
+      "total_revenue_eur": 123915.3
+    },
+    "optimization": {
+      "status": "READY",
+      "recommendations": 1
+    }
+  },
+  "overall": "SUCCESS"
+}

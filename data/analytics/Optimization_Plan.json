@@ -1,0 +1,17 @@
+{
+  "summary": "AI Priority Optimization Plan",
+  "timestamp": "2026-04-27T11:21:45.885867+00:00",
+  "global_kpis": {
+    "current_otif": 39.43,
+    "target_otif": 90.0
+  },
+  "recommendations": [
+    {
+      "urgency": "CRITIQUE",
+      "issue": "Faible OTIF global (39.43%)",
+      "finding": "Le transporteur 'XPO Logistics' ralentit la performance avec seulement 22.73% d'OTIF.",
+      "action": "Transférer 25% du volume de XPO Logistics vers GLS sur les routes critiques.",
+      "impact": "Amélioration estimée de +5.2% de l'OTIF"
+    }
+  ]
+}

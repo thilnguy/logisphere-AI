@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-04-27T11:21:45.885867+00:00",
+  "total_shipments": 500,
+  "total_delivered": 279,
+  "global_otif_pct": 39.43,
+  "avg_lead_time_days": 7.07,
+  "total_co2_kg": 54048.14,
+  "total_revenue_eur": 123915.3,
+  "risk_distribution": {
+    "AUCUN": 190,
+    "FAIBLE": 169,
+    "MOYEN": 73,
+    "ÉLEVÉ": 68
+  },
+  "otif_by_carrier": {
+    "Chronopost": {
+      "total_delivered": 30,
+      "on_time_count": 10,
+      "otif_pct": 33.33
+    },
+    "DB Schenker": {
+      "total_delivered": 28,
+      "on_time_count": 14,
+      "otif_pct": 50.0
+    },
+    "DHL": {
+      "total_delivered": 38,
+      "on_time_count": 15,
+      "otif_pct": 39.47
+    },
+    "FedEx": {
+      "total_delivered": 29,
+      "on_time_count": 12,
+      "otif_pct": 41.38
+    },
+    "GLS": {
+      "total_delivered": 34,
+      "on_time_count": 17,
+      "otif_pct": 50.0
+    },
+    "Kuehne+Nagel": {
+      "total_delivered": 31,
+      "on_time_count": 10,
+      "otif_pct": 32.26
+    },
+    "UPS": {
+      "total_delivered": 31,
+      "on_time_count": 13,
+      "otif_pct": 41.94
+    },
+    "Unknown": {
+      "total_delivered": 36,
+      "on_time_count": 14,
+      "otif_pct": 38.89
+    },
+    "XPO Logistics": {
+      "total_delivered": 22,
+      "on_time_count": 5,
+      "otif_pct": 22.73
+    }
+  },
+  "lead_time_by_carrier": {
+    "Chronopost": 7.07,
+    "DB Schenker": 6.35,
+    "DHL": 6.75,
+    "FedEx": 6.93,
+    "GLS": 5.98,
+    "Kuehne+Nagel": 7.66,
+    "UPS": 6.62,
+    "Unknown": 8.04,
+    "XPO Logistics": 8.58
+  },
+  "lead_time_by_warehouse": {
+    "Bordeaux Logistics Park": 6.72,
+    "Lyon Distribution Center": 6.83,
+    "Marseille Port Depot": 7.14,
+    "Paris-CDG Hub": 7.4
+  },
+  "co2_by_carrier": {
+    "Chronopost": 6809.51,
+    "DB Schenker": 4190.49,
+    "DHL": 8731.79,
+    "FedEx": 4820.59,
+    "GLS": 6946.29,
+    "Kuehne+Nagel": 6228.03,
+    "UPS": 3514.99,
+    "Unknown": 7197.91,
+    "XPO Logistics": 5608.52
+  },
+  "co2_by_vehicle_type": {
+    "avion": 6725.98,
+    "fourgonnette": 99.01,
+    "gros_camion": 37726.02,
+    "petit_camion": 2388.26,
+    "train": 7108.87
+  },
+  "cost_by_city": {
+    "Aix-en-Provence": 1674.59,
+    "Ajaccio": 37.16,
+    "Amiens": 595.29,
+    "Angers": 2807.7,
+    "Annecy": 627.46,
+    "Auxerre": 446.18,
+    "Avignon": 803.69,
+    "Bayonne": 946.99,
+    "Besançon": 111.12,
+    "Bordeaux": 8078.43,
+    "Brest": 2062.0,
+    "Caen": 359.36,
+    "Calais": 721.53,
+    "Chartres": 315.95,
+    "Clermont-Ferrand": 1109.17,
+    "Colmar": 224.75,
+    "Dijon": 1363.67,
+    "Dunkerque": 401.11,
+    "Grenoble": 1810.8,
+    "La Rochelle": 944.02,
+    "Le Havre": 1264.46,
+    "Le Mans": 1010.24,
+    "Lille": 6901.83,
+    "Limoges": 600.42,
+    "Lyon": 7860.95,
+    "Marseille": 7864.88,
+    "Metz": 2166.85,
+    "Montpellier": 655.97,
+    "Mulhouse": 1091.23,
+    "Nantes": 11496.95,
+    "Nice": 10198.55,
+    "Orléans": 1500.74,
+    "Paris": 7357.65,
+    "Pau": 841.86,
+    "Perpignan": 835.14,
+    "Poitiers": 704.87,
+    "Quimper": 736.44,
+    "Reims": 480.86,
+    "Rennes": 6070.83,
+    "Rouen": 1595.22,
+    "Saint-Étienne": 1236.84,
+    "Strasbourg": 8103.81,
+    "Toulon": 3149.65,
+    "Toulouse": 9574.12,
+    "Tours": 3097.04,
+    "Troyes": 179.96,
+    "Valence": 375.83,
+    "Vannes": 1521.14
+  }
+}
