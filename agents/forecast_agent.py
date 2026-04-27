@@ -32,6 +32,7 @@ def run_forecast():
             weekly_seasonality=True,
             changepoint_prior_scale=0.05
         )
+        model.add_country_holidays(country_name='FR')
         model.fit(daily_volume)
 
         # Predict next 180 days (6 months tactical horizon)
