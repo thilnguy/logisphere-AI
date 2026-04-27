@@ -7,14 +7,23 @@
 
 ## Architecture Décisionnelle (Agentic AI)
 
-```
-┌──────────────┐    ┌──────────────────┐    ┌────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│ Source Donnée │───▶│ Agent Qualité    │───▶│ Agent Cleaner  │───▶│ Agent Analyst    │───▶│ Dashboard (UI)  │
-│ (ERP / WMS)   │    │ (Seuil 20%)      │    │ (RGPD + Master)│    │ (OTIF + CO₂)    │    │ (Streamlit)     │
-└──────────────┘    └──────────────────┘    └────────────────┘    └──────────────────┘    └─────────────────┘
-                             │                       │                      │                      │
-                       Halte globale         Hachage PII (SHA256)   Calculs Environ.       Statut Pipeline
-                       Alerte d'anomalie     Mapping Flou (Fuzzy)   Niveaux de Risques     Cartes et KPIs
+```mermaid
+graph LR
+    A[Source Données<br/><i>ERP / WMS</i>] --> B(Agent Qualité)
+    B -- "Seuil 20%" --> C(Agent Cleaner)
+    C -- "RGPD + Master" --> D(Agent Analyst)
+    D -- "OTIF + CO2" --> E(Agent Optimisation)
+    E -- "Prescriptions" --> F[Dashboard UI<br/><i>Streamlit</i>]
+
+    subgraph "Pipeline Intelligence"
+    B -.-> B1[Halte Globale<br/>Alerte Anomalies]
+    C -.-> C1[Hachage SHA256<br/>Mapping Flou]
+    D -.-> D1[Calculs Environ.<br/>Détail Risques]
+    E -.-> E1[Stratégies S&OP]
+    end
+
+    style F fill:#38bdf8,stroke:#1d4ed8,color:#fff
+    style A fill:#1e293b,stroke:#334155,color:#fff
 ```
 
 ### 🧠 Nouvel "Optimization Agent" (Couche Prescriptive)
